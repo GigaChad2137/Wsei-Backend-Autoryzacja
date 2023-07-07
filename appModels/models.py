@@ -94,4 +94,11 @@ class JWTTokenBlocklist(Base):
 
  
 
+class Course(Base):
+    id = Column(Integer, primary_key=True)
+    name = Column(String(64), nullable=False)
+    description = Column(String(256), nullable=False)
+    id_user = Column(Integer, ForeignKey('user.id'), nullable=False)
+
+
 Bases.prepare()
