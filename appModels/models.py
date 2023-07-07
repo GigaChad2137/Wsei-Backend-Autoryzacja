@@ -100,5 +100,11 @@ class Course(Base):
     description = Column(String(256), nullable=False)
     id_user = Column(Integer, ForeignKey('user.id'), nullable=False)
 
+class UserCourse(Base):
+    id_user = Column(Integer, ForeignKey('user.id'), nullable=False)
+    id_course = Column(Integer, ForeignKey('course.id'), nullable=False)
+    user = relationship('User', backref='user_courses')
+    course = relationship('Course', backref='user_courses')
+
 
 Bases.prepare()
