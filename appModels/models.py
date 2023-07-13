@@ -95,14 +95,16 @@ class JWTTokenBlocklist(Base):
  
 
 class Course(Base):
+    __tablename__ = "courses"
     id = Column(Integer, primary_key=True)
     name = Column(String(64), nullable=False)
     description = Column(String(256), nullable=False)
-    id_user = Column(Integer, ForeignKey('user.id'), nullable=False)
+    id_user = Column(Integer, ForeignKey('users.id'), nullable=False)
 
 class UserCourse(Base):
-    id_user = Column(Integer, ForeignKey('user.id'), nullable=False)
-    id_course = Column(Integer, ForeignKey('course.id'), nullable=False)
+    __tablename__ = "user_courses"
+    id_user = Column(Integer, ForeignKey('users.id'),primary_key=True, nullable=False)
+    id_course = Column(Integer, ForeignKey('courses.id'), nullable=False)
     user = relationship('User', backref='user_courses')
     course = relationship('Course', backref='user_courses')
 

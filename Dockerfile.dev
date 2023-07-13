@@ -1,0 +1,21 @@
+FROM python:3.11.2
+
+ENV FLASK_APP=app.py
+ENV FLASK_DEBUG=1
+ENV FLASK_RUN_HOST=0.0.0.0
+
+WORKDIR /code
+
+COPY requirements.txt requirements.txt
+
+
+RUN    pip3 install --no-cache-dir -r requirements.txt  && \
+       useradd -u 1000 auth_s  
+
+COPY . .
+
+RUN chown -R auth_s:auth_s /code 
+
+USER auth_s
+
+CMD ["flask", "run"]
