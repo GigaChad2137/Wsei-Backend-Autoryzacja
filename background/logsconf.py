@@ -1,7 +1,7 @@
 import logging
 import logging.handlers
 
-logger = logging.getLogger('Octopus-Logger')
+logger = logging.getLogger('Logger')
 logger.setLevel(logging.DEBUG)
 file_handler = logging.FileHandler('./logs.log')
 file_handler.setLevel(logging.INFO)
